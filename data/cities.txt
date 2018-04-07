@@ -1,0 +1,48 @@
+Huntsville, AL
+Anchorage, AK
+Scottsdale, AZ
+Little Rock, AR
+Berkeley, CA
+Boulder, CO
+Stamford, CT
+Middletown, DE
+Gainesville, FL
+Sandy Springs, GA
+Boise, ID
+Fort Wayne, IN
+Ames, IA
+Overland Park, KS
+Lexington, KY
+Lafayette, LA
+Cape Elizabeth, ME
+Columbia, MD
+Cambridge, MA
+Ann Arbor, MI
+Rochester, MN
+Madison, MS
+Columbia, MO
+Bozeman, MT
+Lincoln, NE
+Henderson, NV
+Bedford, NH
+Princeton, NJ
+Albuquerque, NM
+Kensington, NY
+Raleigh, NC
+Fargo, ND
+Dublin, OH
+Edmond, OK
+Portland, OR
+Philadelphia, PA
+Providence, RI
+Charleston, SC
+Sioux Falls, SD
+Brentwood, TN
+The Woodlands, TX
+Provo, UT
+Burlington, VT
+Arlington, VA
+Bellevue, WA
+Bridgeport, WV
+Madison, WI
+Jackson, WY
