@@ -72,7 +72,7 @@ def main(airport_data = "../data/airportCodes.csv", year=2019):
     # assuming I travel every friday. 50 states including start date. so 350=7*50 not includded
     flight_dates = [start_date + relativedelta(days=el) for el in range(0,350,7)]
     today = dt.today()
-    flight_dates = [date for date in flight_dates if date > today]
+    flight_dates = [pd.to_datetime(date) for date in flight_dates if date > today]
 
     new_df = pd.DataFrame(columns=['City', 'Date', 'Airport'])
     new_df['Date'] = np.tile(flight_dates, len(cities))
@@ -84,7 +84,11 @@ def main(airport_data = "../data/airportCodes.csv", year=2019):
         return getPrice(expedia("PIA", row['Airport'], row['Date']))
 
     new_df['Cost'] = new_df.apply(cost_on_row, axis=1)
-
+    # costs = []
+    # for _, row in new_df.iterrows():
+    #     costs.append(getPrice(expedia("PIA", row['Airport'], pd.to_datetime(row['Date']))))
+    #
+    # new_df['Cost'] = costs
 
     return new_df
 
