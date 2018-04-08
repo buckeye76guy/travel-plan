@@ -28,7 +28,7 @@ def get_credentials(path, flavor='api'):
     return creds
 
 # print(get_credentials('../credentials/apkeys.txt'))
-mykey = get_credentials('../credentials/apkeys.txt').get('WeekendTravels')
+mykey = get_credentials('C:/Users/Josiah Hounyo/Documents/weekendTravels/credentials/apkeys.txt').get('WeekendTravels')
 
 
 def geocode(key, address='Peoria, IL'):
@@ -177,7 +177,11 @@ def getPrice(resp):
     json_string = json_string[0].text
 
     if json_string == '':
-        return "N/A"
+        objs = soup.find_all("span", {"class":"full-bold"})
+        if len(objs) == 0:
+            return "N/A"
+        else:
+            return objs[0].text
 
     json_obj = json.loads(json_string)
 
