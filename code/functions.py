@@ -126,14 +126,10 @@ def getDuration(result):
     :return: list of tuples like: (destination, duration in seconds)
     """
     if result.get('status','') == 'OK':
-        if len(result.get('destination_addresses',[])) == 1:
-            return list(zip(result.get('destination_addresses'),
-                            [result.get('rows')[0].get('elements')[0].get('duration').get('value')]))
-        else:
-            dests = result.get('destination_addresses')
-            durations = [el.get('duration').get('value') for el in result.get('rows')[0].get('elements')]
+        dests = result.get('destination_addresses')
+        durations = [el.get('duration').get('value') if el.get('status') == 'OK' else 'N/A' for el in result.get('rows')[0].get('elements')]
 
-            return list(zip(dests, durations))
+        return list(zip(dests, durations))
     else:
         return None
 
@@ -153,7 +149,8 @@ def expedia(origin, destination, start_dt, rtrn=None):
                'origref': 'www.expedia.com'
                }
 
-    resp = requests.get(url, headers, verify=False)
+    # resp = requests.get(url, headers, verify=False)
+    resp = requests.get(url, headers, verify=True)
     return resp
 
 ''' This header definitely worked
@@ -175,12 +172,22 @@ def getPrice(resp):
     json_string = soup.find_all(id='cachedResultsJson')
 
     if len(json_string) == 0:
-        return 'N/A'
+        return "N/A"
 
-    json_string = json_string[0].text.encode('utf-8')
+    json_string = json_string[0].text
+
+    if json_string == '':
+        return "N/A"
+
     json_obj = json.loads(json_string)
 
     metadata = json_obj.get('metaData',{})
     return metadata.get('formattedCheapestRoundedUpPrice', 'N/A')
 
 # print(getPrice(expedia('Peoria, IL', 'Columbus, OH', dt(2018,5,12))))
+
+def firstFriday(year=2019):
+    d = dt(year,1,1)
+    for delta in range(0,7):
+        if dt.weekday(d + relativedelta(days=delta)) == 4:
+            return d + relativedelta(days=delta)
